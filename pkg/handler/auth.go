@@ -42,5 +42,9 @@ func (h *Handler) signIn(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.Header("Authorization", "Bearer "+token)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "authenticated",
+		"token":   token,
+	})
 }
